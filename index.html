@@ -33,24 +33,37 @@
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            background-color: #fff;
+            background-color: #000; /* Black background for the squares */
             border: 2px solid #007bff;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            color: white; /* Default text color for the X's and O's */
         }
 
-        /* Change cell background color on hover */
-        .cell:hover {
-            background-color: #e9ecef;
+        /* X's and O's color styling */
+        .cell.x {
+            color: red; /* Red color for X */
         }
 
-        /* Style the restart button */
+        .cell.o {
+            color: white; /* White color for O */
+        }
+
+        /* Style the restart button to be red */
         #restart-button {
             width: 100%;
             margin-top: 20px;
             padding: 10px;
             font-size: 1.2rem;
+            background-color: red;
+            border-color: red;
+            color: white;
+        }
+
+        /* Change cell background color on hover */
+        .cell:hover {
+            background-color: #444; /* Darker shade on hover */
         }
 
         /* Style the turn indicator */

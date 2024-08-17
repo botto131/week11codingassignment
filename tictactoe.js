@@ -68,3 +68,29 @@ function restartGame() {
 // Add event listeners
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
 document.getElementById('restart-button').addEventListener('click', restartGame);
+function handleCellClick(event) {
+    const cellIndex = event.target.getAttribute('data-index');
+
+    // If the cell is already occupied or the game is over, do nothing
+    if (gameState[cellIndex] !== null || checkWinner()) {
+        return;
+    }
+
+    // Update the grid state and UI
+    gameState[cellIndex] = currentPlayer;
+    event.target.textContent = currentPlayer;
+    
+    // Apply the appropriate class based on the current player
+    event.target.classList.add(currentPlayer.toLowerCase()); // Adds 'x' class for X or 'o' class for O
+
+    // Check if the game is won or is a draw
+    if (checkWinner()) {
+        showAlert(`${currentPlayer} Wins!`);
+    } else if (!gameState.includes(null)) {
+        showAlert("It's a Draw!");
+    } else {
+        // Switch player
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        document.getElementById('turn-indicator').textContent = `${currentPlayer}'s Turn`;
+    }
+}
